@@ -51,7 +51,7 @@ export class AppServer {
       path: '/create-user',
       handler: (request: Request, h: ResponseToolkit) => {
         let user: User = EntityMapper.fromRequest(request, new User);
-        user.password = PasswordUtil.encryptString(user.password, this.settings.passwordSalt);
+        user.password = PasswordUtil.encrypt(user.password, this.settings.passwordSalt);
         const userRepo = this.connection.getRepository(User);
         return userRepo.save(user).then(savedUser => {
           return savedUser;
