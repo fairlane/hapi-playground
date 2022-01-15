@@ -9,11 +9,16 @@ This is a just a nodejs playground using [hapi](https://hapi.dev/) & [typeorm](h
 # Running the app
 Once you have done the setup run `npm start`.
 
+# Migrations
+* Create new migration: `tyopeorm migration:create -n MigrationName`
+* Show migrations: `npm run migrations-show`
+* Run migrations: `npm run migrations-run`
+* Revert migrations: `npm run migrations-revert`
+
 # ToDos
-- Populate settings from env
-- Add host and port to the settings 
+- Introduce a proper service layer for user management (password hashing etc. should go here)
 - Add a separate routing configuration
-- Introduce a proper service layer
 - Escape html and js
 - Add templating
 - Add tests
+- Add Github actions

@@ -19,6 +19,9 @@
   },
   "scripts": {
     "start": "ts-node src/index.ts --inspect",
-    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+    "migrations-run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run",
+    "migrations-revert": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:revert",
+    "migrations-show": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:show"
   }
 }
