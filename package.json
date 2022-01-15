@@ -25,6 +25,7 @@
     "migrations-run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run",
     "migrations-revert": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:revert",
     "migrations-show": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:show",
-    "test": "lab -v test/**/*.test.js"
+    "test": "lab -v test/**/*.test.js",
+    "build": "node_modules/typescript/bin/tsc"
   }
 }
