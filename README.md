@@ -20,5 +20,3 @@ Once you have done the setup run `npm start`.
 - Add a separate routing configuration
 - Escape html and js
 - Add templating
-- Add tests
-- Add Github actions

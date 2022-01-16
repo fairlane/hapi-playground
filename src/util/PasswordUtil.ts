@@ -2,7 +2,7 @@ import {createHash} from "crypto";
 import {Hash} from "crypto";
 import {Settings} from "../config/Settings";
 
-const generateRandomString = (lenth: number): string => {
+const generateRandomString = (length: number): string => {
   const characters = '#"€%&/()=?^¨ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const charactersLength = characters.length;
   let result: string = '';
@@ -23,7 +23,7 @@ export default class PasswordUtil {
   }
   static encrypt(s: string, salt: string) {
     return encryptString(s, salt);
-  } 
+  }
 }
 
 export {generateRandomString, encryptString};
