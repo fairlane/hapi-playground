@@ -31,7 +31,6 @@
     "migrations-show": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:show",
     "test-lab": "lab -v test/**/*.test.js",
     "test": "mocha -r ts-node/register test/**/*.test.ts",
-    "test-ci": "TEST_DATABASE_URL=postgres://postgres:pspassword@127.0.0.1:5432/sandbox_hapi_test mocha -r ts-node/register test/**/*.test.ts",
     "build": "node_modules/typescript/bin/tsc"
   },
   "directories": {
