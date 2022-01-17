@@ -47,4 +47,4 @@ jobs:
         psql -U postgres -h 127.0.0.1 -p 5432 -c 'CREATE SCHEMA sandbox_hapi_test'
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm test-ci
+    - run: npm run test-ci
