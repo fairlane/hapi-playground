@@ -17,7 +17,8 @@ Once you have done the setup run `npm start`.
 
 # ToDos
 - Introduce a proper service layer for user management (password hashing etc. should go here)
-- Add postgres container to CI
+- Use generics for custom repository
+- Use generics for service
 - Add a separate routing configuration
 - Escape html and js
 - Add templating

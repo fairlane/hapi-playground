@@ -1,7 +1,5 @@
 import {Connection, createConnection, getConnection} from "typeorm";
-import {rejects} from "assert";
 
-// TODO - should create a connection for test db
 const ENTITIES_DIR = __dirname + "/../../src/entity/*{.js,.ts}";
 const createTestConnection = (): Promise<Connection> => {
 

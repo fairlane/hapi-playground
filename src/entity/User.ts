@@ -1,10 +1,8 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, Column} from "typeorm";
+import {EntityWithIdentity} from "./EntityWithIdentity";
 
 @Entity({name: "appuser"})
-export class User {
-
-  @PrimaryGeneratedColumn()
-  id: number;
+export class User extends EntityWithIdentity {
 
   @Column({type: "varchar", length: 110, nullable: false})
   username: string;
