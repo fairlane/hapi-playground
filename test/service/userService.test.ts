@@ -1,6 +1,7 @@
 import {UserService} from '../../src/service/UserService';
 import {User} from '../../src/entity/User';
 import {createTestConnection} from "../_testutil/TestDatabase";
+import {assert, use} from 'chai';
 const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
@@ -10,10 +11,14 @@ describe('Add user', () => {
     return createTestConnection().then(connection => {
       const userService = new UserService(connection, User);
       let user: User = new User();
+      const originalPass = "pass"
       user.username = "Testuser";
       user.fullName = "Test User";
-      user.password = "pass";
-      return expect(userService.add(user)).to.eventually.have.property("id");
+      user.password = originalPass;
+      return userService.add(user).then(storedUser => {
+        assert.typeOf(storedUser.id, 'number');
+        assert.notEqual(storedUser.password, originalPass);
+      });
     });
   });
 });

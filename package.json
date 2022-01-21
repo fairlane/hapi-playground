@@ -7,8 +7,11 @@
   "license": "WTFPL",
   "dependencies": {
     "@hapi/hapi": "^18.4.0",
+    "@hapi/inert": "^6.0.5",
+    "@hapi/vision": "^6.1.0",
     "dotenv": "^10.0.0",
     "hapi-postgres-connection": "^7.0.0",
+    "hbs": "^4.2.0",
     "typeorm": "^0.2.41"
   },
   "devDependencies": {
