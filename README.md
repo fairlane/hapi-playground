@@ -16,9 +16,7 @@ Once you have done the setup run `npm start`.
 * Revert migrations: `npm run migrations-revert`
 
 # ToDos
-- Introduce a proper service layer for user management (password hashing etc. should go here)
-- Use generics for custom repository
-- Use generics for service
-- Add a separate routing configuration
-- Escape html and js
-- Add templating
+* Add a separate routing configuration
+* Escape html and js (in case we decide to use them)
+* Add mocking to test cases where applicable
+* Check how to do the REST API properly

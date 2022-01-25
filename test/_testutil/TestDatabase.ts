@@ -5,9 +5,7 @@ const createTestConnection = (): Promise<Connection> => {
 
   try {
     const conn: Connection = getConnection();
-    return new Promise<Connection>(function(resolve, reject) {
-      resolve(conn);
-    });
+    return Promise.resolve(conn);
   } catch (ConnectionNotFoundError) {
     return createConnection({
       type: 'postgres',

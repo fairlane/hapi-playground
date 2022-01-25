@@ -5,20 +5,24 @@ import {Settings} from "./config/Settings";
 import { User } from "./entity/User";
 import { EntityMapper } from "./util/EntityMapper";
 import { HtmlModel } from "./templates/model/HtmlModel";
+import {UserService} from "./service/UserService";
 import PasswordUtil from "./util/PasswordUtil";
-const Path = require("path");
-const Vision = require("@hapi/vision");
+import * as Path from "path";
+import * as Vision from "@hapi/vision";
+import * as Handlebars from "handlebars";
+// import {server as createServer} from "@hapi/hapi";
 const Hapi = require('@hapi/hapi');
-const Handlebars = require('handlebars');
 
 export class AppServer {
 
   private connection: Connection;
   private settings: Settings;
+  private userService: UserService;
 
   constructor(connection: Connection, settings: Settings) {
     this.connection = connection;
     this.settings = settings;
+    this.userService = new UserService(connection, User);
   }
 
   async init() {
@@ -82,6 +86,19 @@ export class AppServer {
         const userRepo = this.connection.getRepository(User);
         return userRepo.save(user).then(savedUser => {
           return savedUser;
+        }).catch(err => {
+          console.log(err);
+          return err;
+        });
+      }
+    });
+
+    server.route({
+      method: 'GET',
+      path: '/list-users',
+      handler: (request: Request, h: ResponseToolkit) => {
+        return this.userService.findAll().then(users => {
+          return users;
         }).catch(err => {
           console.log(err);
           return err;
