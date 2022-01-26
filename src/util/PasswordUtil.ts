@@ -1,6 +1,5 @@
 import {createHash} from "crypto";
-import {Hash} from "crypto";
-import {Settings} from "../config/Settings";
+import {getSettings} from "../config/Settings";
 
 const generateRandomString = (length: number): string => {
   const characters = '#"€%&/()=?^¨ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -12,8 +11,8 @@ const generateRandomString = (length: number): string => {
   return result;
 }
 
-const encryptString = (s: string, salt: string): string => {
-  let concat = salt + s;
+const encryptString = (s: string): string => {
+  let concat = getSettings().passwordSalt + s;
   return createHash('sha256').update(concat).digest('hex');
 }
 
@@ -21,8 +20,8 @@ export default class PasswordUtil {
   static generateRandomPassword(length: number) {
     return generateRandomString(length);
   }
-  static encrypt(s: string, salt: string) {
-    return encryptString(s, salt);
+  static encrypt(s: string) {
+    return encryptString(s);
   }
 }
 

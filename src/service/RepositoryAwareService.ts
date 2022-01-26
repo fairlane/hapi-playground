@@ -1,14 +1,11 @@
-import {Connection, DeepPartial, EntityTarget, Repository} from "typeorm";
+import {DeepPartial, EntityTarget, getConnection, Repository} from "typeorm";
 import {EntityWithIdentity} from "../entity/EntityWithIdentity";
 
 export class RepositoryAwareService<T extends EntityWithIdentity> {
   private readonly repository: Repository<T>;
 
-  constructor(connection: Connection, repo: EntityTarget<T>) {
-    this.repository = connection.getRepository(repo);
-  }
-  public getRepository(): Repository<T> {
-    return this.repository;
+  constructor(repo: EntityTarget<T>) {
+    this.repository = getConnection().getRepository(repo);
   }
 
   public async findAll(): Promise<T[]>  {

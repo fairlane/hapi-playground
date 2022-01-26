@@ -6,6 +6,8 @@ This is a just a nodejs playground using [hapi](https://hapi.dev/) & [typeorm](h
 * Install project dependencies (`npm install`)
 * Define env variable `DATABASE_URL` (for example `DATABASE_URL=postgres://postgres:password@localhost:5432/hapi_db`)
 * For tests, you must define `TEST_DATABASE_URL` (for example `TEST_DATABASE_URL=postgres://postgres:password@localhost:5432/test_hapi_db`)
+* You must also define env variable `NODE_ENV` to have values `prod`, `dev` or `test` - `test` is the default 
+* 
 # Running the app
 Once you have done the setup run `npm start`.
 

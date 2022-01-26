@@ -1,7 +1,8 @@
-import {Request, ResponseToolkit} from "@hapi/hapi";
-import {Connection} from "typeorm";
+import {Request, ResponseToolkit, server as createServer} from "@hapi/hapi";
+import {Connection, getConnection} from "typeorm";
 import {UserRepository} from "./repository/UserRepository";
-import {Settings} from "./config/Settings";
+import {getSettings} from "./config/Settings";
+import {Settings} from "./types/Types";
 import { User } from "./entity/User";
 import { EntityMapper } from "./util/EntityMapper";
 import { HtmlModel } from "./templates/model/HtmlModel";
@@ -10,8 +11,6 @@ import PasswordUtil from "./util/PasswordUtil";
 import * as Path from "path";
 import * as Vision from "@hapi/vision";
 import * as Handlebars from "handlebars";
-// import {server as createServer} from "@hapi/hapi";
-const Hapi = require('@hapi/hapi');
 
 export class AppServer {
 
@@ -19,14 +18,14 @@ export class AppServer {
   private settings: Settings;
   private userService: UserService;
 
-  constructor(connection: Connection, settings: Settings) {
-    this.connection = connection;
-    this.settings = settings;
-    this.userService = new UserService(connection, User);
+  constructor() {
+    this.connection = getConnection();
+    this.settings = getSettings();
+    this.userService = new UserService(User);
   }
 
   async init() {
-    const server = Hapi.server({
+    const server = createServer({
       port: this.settings.port,
       host: this.settings.host,
       routes: {
@@ -37,6 +36,7 @@ export class AppServer {
     });
 
     await server.register(Vision);
+    // @ts-ignore
     server.views({
       engines: {
         html: Handlebars
@@ -55,6 +55,7 @@ export class AppServer {
         let htmlModel = new HtmlModel("Test title", {
           testvar: "ok"
         });
+        // @ts-ignore
         return h.view(
             'index',
             htmlModel
@@ -82,7 +83,7 @@ export class AppServer {
       path: '/create-user',
       handler: (request: Request, h: ResponseToolkit) => {
         let user: User = EntityMapper.fromRequest(request, new User);
-        user.password = PasswordUtil.encrypt(user.password, Settings.passwordSalt);
+        user.password = PasswordUtil.encrypt(user.password);
         const userRepo = this.connection.getRepository(User);
         return userRepo.save(user).then(savedUser => {
           return savedUser;

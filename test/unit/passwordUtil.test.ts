@@ -3,7 +3,7 @@ import { expect } from 'chai';
 
 describe('Password encrypt', () => {
   it('password should be encrypted', () => {
-    const result = PasswordUtil.encrypt('test-pass', 'test-salt');
+    const result = PasswordUtil.encrypt('test-pass');
     expect(result).to.equal('7e5ef15ae28693ae3881379a71c97b54dffc82171b5efc0813c51993d05ded59');
   });
 });
