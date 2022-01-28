@@ -31,7 +31,8 @@ export class AppServer {
       routes: {
         files: {
           relativeTo: Path.join(__dirname, 'public')
-        }
+        },
+        cors: true
       }
     });
 

@@ -11,10 +11,4 @@ const databaseConfigFromSettings = (): ConnectionOptions =>  {
   return getSettings().databaseConfig;
 }
 
-const c2 = () => {
-  // return connect().then(c => {
-  //   return c;
-  // });
-}
-
-export {connect, c2};
+export {connect};
