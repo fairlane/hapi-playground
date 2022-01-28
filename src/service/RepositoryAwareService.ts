@@ -4,6 +4,10 @@ import {EntityWithIdentity} from "../entity/EntityWithIdentity";
 export class RepositoryAwareService<T extends EntityWithIdentity> {
   private readonly repository: Repository<T>;
 
+  public getRepository(): Repository<T> {
+    return this.repository;
+  }
+
   constructor(repo: EntityTarget<T>) {
     this.repository = getConnection().getRepository(repo);
   }

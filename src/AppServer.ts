@@ -67,31 +67,28 @@ export class AppServer {
     server.route({
       method: 'GET',
       path: '/search',
-      handler: (request: Request, h: ResponseToolkit) => {
+      handler: async (request: Request, h: ResponseToolkit) => {
         let s = request.query.s;
-        const userRepo = this.connection.getCustomRepository(UserRepository);
-        return userRepo.findByUsername(s).then(user => {
-          return user ? user : {"result": "not-found"};
-        }).catch(err => {
-          console.error(err);
-          return `Damn, something is not right: ${err}`;
-        })
+        // TODO - add validation & sanitasing
+        const result = await this.userService.search(s);
+        return result;  
       }
     });
 
     server.route({
       method: 'POST',
       path: '/create-user',
-      handler: (request: Request, h: ResponseToolkit) => {
+      handler: async (request: Request, h: ResponseToolkit) => {
         let user: User = EntityMapper.fromRequest(request, new User);
         user.password = PasswordUtil.encrypt(user.password);
         const userRepo = this.connection.getRepository(User);
-        return userRepo.save(user).then(savedUser => {
+        try {
+          const savedUser = await userRepo.save(user);
           return savedUser;
-        }).catch(err => {
+        } catch (err) {
           console.log(err);
           return err;
-        });
+        }
       }
     });
 
