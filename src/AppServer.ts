@@ -97,13 +97,8 @@ export class AppServer {
     server.route({
       method: 'GET',
       path: '/list-users',
-      handler: (request: Request, h: ResponseToolkit) => {
-        return this.userService.findAll().then(users => {
-          return users;
-        }).catch(err => {
-          console.log(err);
-          return err;
-        });
+      handler: async (request: Request, h: ResponseToolkit) => {
+        return await this.userService.findAll();
       }
     });
   }
