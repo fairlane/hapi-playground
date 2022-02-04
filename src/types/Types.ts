@@ -13,4 +13,6 @@ export interface Settings {
   databaseConfig: ConnectionOptions;
   env: Env;
   nodeEnv: string;
+  aws_pool_id: string;
+  aws_client_id: string;
 }

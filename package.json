@@ -9,6 +9,7 @@
     "@hapi/hapi": "^18.4.0",
     "@hapi/inert": "^6.0.5",
     "@hapi/vision": "^6.1.0",
+    "amazon-cognito-identity-js": "^5.2.5",
     "dotenv": "^10.0.0",
     "hapi-postgres-connection": "^7.0.0",
     "hbs": "^4.2.0",

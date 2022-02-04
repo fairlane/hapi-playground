@@ -45,12 +45,15 @@ const getSettings = (): Settings => {
     }
   }
   return {
+    aws_client_id: process.env.AWS_COGNITO_CLIENT_ID,
+    aws_pool_id: process.env.AWS_COGNITO_POOL_ID,
     databaseConfig: databaseOrmConfig,
     host: process.env.HAPI_HOST || "localhost",
     passwordSalt: process.env.PASSWORD_SALT || "34209ewfpoewkf0w3irier=)I=)€#I=Err325RERT3??%%!",
     port: process.env.HAPI_PORT || "3001",
     nodeEnv: process.env.NODE_ENV,
     env: env
+
   }
 }
 export {getSettings};
